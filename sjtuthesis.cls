@@ -527,7 +527,7 @@
 	  \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
 	  \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
 	  \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{last}}~页}
-	  \renewcommand{\headheight}{32pt}
+	  % \renewcommand{\headheight}{32pt}
 	}
   %% 英文大摘要
   \fancypagestyle{biglast}{
@@ -535,7 +535,7 @@
     \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
     \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
     \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{biglast}}~页}
-    \renewcommand{\headheight}{32pt}
+    % \renewcommand{\headheight}{32pt}
   }
 	%% 开章页页眉页脚
 	\fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
@@ -543,7 +543,7 @@
 	  \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
 	  \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
 	  \fancyfoot[C]{\small 第~{\bf\thepage}~页\,共~{\bf\pageref{last}}~页}
-	  \renewcommand{\headheight}{32pt}
+	  % \renewcommand{\headheight}{32pt}
 	}
 \fi
 
@@ -567,9 +567,6 @@
 
 
 
-
-
- 
 \renewenvironment{thanks}
   {\chapter{\sjtu@label@thanks}}
   {}
@@ -591,7 +588,7 @@
   \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
   \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
   \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{biglast}}~页}
-  \renewcommand{\headheight}{32pt}
+  % \renewcommand{\headheight}{32pt}
 }
 
 \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
@@ -599,7 +596,7 @@
   \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
   \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
   \fancyfoot[C]{\small 第~{\bf\thepage}~页\,共~{\bf\pageref{biglast}}~页}
-  \renewcommand{\headheight}{32pt}
+  % \renewcommand{\headheight}{32pt}
 }
 
 \chapter*{\bf\MakeUppercase{\sjtu@value@englishtitle}\vskip 20pt }

@@ -18,17 +18,16 @@
 % ========================================
 % 以下内容在多个作者时使用
 \setmultiauthor
-\title{上海交通大学课程设计/大作业 \LaTeX 模板}
-\multiauthorone{张\quad{}三}{500000000000}
-\multiauthortwo{贾多宝}{500000000000}
-\multiauthorthree{Michael Jackson}{500000000000}
-\multiauthorfour{乔达摩·悉达多}{500000000000}
-\multiauthorfive{Jerry Mouse}{500000000000}
-\multiauthorsix{AAB}{123456789}
+\title{人工智能换脸}
+% 一种基于循环一致性生成式对抗网络(CycleGAN) 和自注意力机制(Self-Attention)的方法
+\multiauthorone{徐\quad{}欢}{161100304}
+\multiauthortwo{康钰茹}{160950201}
+\multiauthorthree{肖文韬}{160800224}
+\multiauthorfour{金明渊}{160800316}
 %\multiauthorseven
 %\multiauthoreight
 %\multiauthornine
-\advisor{王老吉}
+\advisor{蔡棽}
 
 
 \maketitle
@@ -38,15 +37,16 @@
 \tableofcontents
 
 
+\begin{finish}
 %% 正文
 \include{tex/summary}
 
 %% 附录
-\appendix
-\include{tex/app_setup}
+% \appendix
+% \include{tex/app_setup}
 
+\backmatter % 文后无编号部分
 \printbibliography[heading=bibintoc]
-
-\label{last}
+\end{finish}
 
 \end{document}
