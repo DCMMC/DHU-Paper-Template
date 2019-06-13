@@ -7,7 +7,7 @@
 ## 论文效果
 
 <p align="center">
-      <a><img src="./cover.png" width="300"></a>
+      <a><img src="./cover.png" width="700"></a>
 </p>
 
 
@@ -21,3 +21,10 @@
     biber --debug thesis
     xelatex thesis
     xelatex thesis
+
+## 推荐使用 `MiKTeX`
+
+[Install for \*nix](https://miktex.org/howto/install-miktex-unx)
+
+
+> 如果是安装在用户级别, 记得 `~/bin` 加入 `$PATH`
