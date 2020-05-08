@@ -1,0 +1,57 @@
+%# -*- coding: utf-8-unix -*-
+\documentclass[12pt, project, fontset=windows, openany, oneside, submit]{sjtuthesis}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{xpatch}
+\usepackage{caption}
+% remove headers
+\renewcommand{\headrulewidth}{0pt}
+\makeatletter
+\xpatchcmd{\chapter}
+  {\if@openright\cleardoublepage\else\clearpage\fi}{\par\relax}
+  {}{}
+\xpatchcmd{\chapter}
+  {\CTEX@chapter@break}{\par\relax}
+  {}{}
+\xpatchcmd{\@endpart}
+  {\newpage}{\par\relax}
+  {}{}
+\makeatother
+\geometry{left=3.17cm,right=3.17cm,top=2.54cm,bottom=2.54cm} 
+\setmainfont{Times New Roman}
+\setCJKmainfont{宋体}
+
+\addbibresource{bib/thesis.bib}
+\begin{document}
+
+% ========================================
+% 以下内容在单个作者时使用
+\title{面向语义分析的文本识别研究与实现}
+\author{肖文韬}
+%\advisor{徐光伟}	
+\advisor{万燕}
+\defenddate{2019 年 12 月 25 日}
+\school{东华大学}
+\institute{计算机科学与技术学院}
+\studentnumber{160800224}
+\major{计算机科学与技术}
+
+
+\maketitle
+\mainmatter
+\pagestyle{main}
+% \include{tex/abstract}
+% \tableofcontents
+
+\begin{finish}
+%% 正文
+\include{tex/summary}
+
+%\backmatter % 文后无编号部分
+%\printbibliography[heading=bibintoc]
+\printbibliography[title = {参考文献}, heading = bibnumbered]
+\end{finish}
+
+\end{document}
