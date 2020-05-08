@@ -1,0 +1,54 @@
+%# -*- coding: utf-8-unix -*-
+
+% fontset=windows
+\documentclass[project, fontset=windows, openany, oneside, submit]{sjtuthesis}
+
+%\usepackage{times}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+
+\addbibresource{bib/thesis.bib}
+\begin{document}
+
+% ========================================
+% 以下内容在单个作者时使用
+\title{面向语义分析的文本识别研究与实现}
+\englishtitle{TOWARDS SEMANTIC ANALYSIS IN TEXT RECOGNITION: RESAERCH AND IMPLEMENTATION}
+\author{肖文韬}
+\advisor{万燕}
+\defenddate{2019 年 12 月 25 日}
+\school{东华大学}
+\institute{计算机科学与技术学院}
+\studentnumber{160800224}
+\major{计算机科学与技术}
+
+
+\maketitle
+\mainmatter
+\pagestyle{main}
+\include{tex/abstract}
+\tableofcontents
+
+
+\begin{finish}
+%% 正文
+\include{tex/summary}
+
+\backmatter % 文后无编号部分
+\printbibliography[heading=bibintoc]
+
+\begin{thanks}
+	
+	感谢女朋友凯丽一直以来的陪伴与支持！
+	
+	感谢家人对我的抚养与鼓励！
+	
+	感谢研究生师兄与毕设指导老师万燕老师对我毕业的监督与关照！
+	
+\end{thanks}
+
+\end{finish}
+
+\end{document}
