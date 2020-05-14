@@ -22,7 +22,7 @@
 \DeclareOption{submit}{\sjtu@submittrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
-\LoadClass[a4paper,UTF8,zihao=-4,scheme=chinese]{ctexbook}
+\LoadClass[a4paper,UTF8,zihao=-4,scheme=chinese,AutoFakeBold]{ctexbook}
 \ifsjtu@bachelor\relax\else
   \ifsjtu@master\relax\else
     \ifsjtu@doctor\relax\else
@@ -38,12 +38,12 @@
 %% sjtuthesis.cls segments
 % 0. Import sjtuthesis.cfg
 % 1. Import and configure LaTeX packages.
-% 2. Define general-purpose LaTeX commands. 
+% 2. Define general-purpose LaTeX commands.
 % 3. Configure the imported packages, also extend LaTeX command in sjtuthesis
 % 4. Draw the sjtuthesis
 
 %==========
-% Segment 0. Import sjtuthesis.cfg 
+% Segment 0. Import sjtuthesis.cfg
 %==========
 
 %% 导入 sjtuthesis.cfg 文件
@@ -64,13 +64,15 @@
 \RequirePackage{multirow}
 \RequirePackage{makecell}
 \RequirePackage{booktabs}
-\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm,mathrsfs} 
+\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm,mathrsfs}
 \RequirePackage{upgreek}
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
 \RequirePackage{caption}
 \RequirePackage[list=off]{bicaption}
-\RequirePackage[backend=biber,style=gb7714-2015]{biblatex}
+\RequirePackage[backend=biber,style=gb7714-2015,gbpunctin=false,gbpub=false,gbnamefmt=lowercase,gbtype=false,url=false,doi=false]{biblatex}
+% 一条文献中第一行相对后面各行的缩进
+\setlength{\bibitemindent}{4em}
 \DeclareCiteCommand{\citen} %加入一个水平引用函数
   {[\usebibmacro{cite:init}%直接添加方括号
    \usebibmacro{prenote}}
@@ -101,7 +103,7 @@
 
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
-    
+
 % User defined command list
 %% \me \mi \mj \dif \cleardoublepage \cndash \CJKLaTeX
 
@@ -109,7 +111,7 @@
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
 
 % upper math letter
-\newcommand{\me}{\mathrm{e}} 
+\newcommand{\me}{\mathrm{e}}
 \newcommand{\mi}{\mathrm{i}}
 \newcommand{\mj}{\mathrm{j}}
 \newcommand{\dif}{\mathrm{d}}
@@ -126,7 +128,7 @@
 	\fi}
 
 % CJK-LaTeX Logo \CJKLaTeX
-\newcommand{\CJKLaTeX}{CJK--\LaTeX} 
+\newcommand{\CJKLaTeX}{CJK--\LaTeX}
 
 % cndash
 \newcommand{\cndash}{\rule{0.0em}{0pt}\rule[0.35em]{1.4em}{0.05em}\rule{0.2em}{0pt}}
@@ -150,7 +152,7 @@
 \ctexset{listfigurename={\sjtu@listfigurename}}
 \ctexset{listtablename={\sjtu@listtablename}}
 \floatname{algorithm}{\sjtu@label@algo}
-\renewcommand{\algorithmicrequire}{\textbf{输入:}} 
+\renewcommand{\algorithmicrequire}{\textbf{输入:}}
 \renewcommand{\algorithmicensure}{\textbf{输出:}}
 \renewcommand{\listalgorithmname}{\sjtu@listalgorithmname}
 \renewcommand{\lstlistingname}{\sjtu@value@listingname}
@@ -315,7 +317,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The following definitions add Switch statement to LaTeX algorithmicx package
 % It's based on Werner's answer on stackoverflow
-% http://tex.stackexchange.com/questions/53357/switch-cases-in-algorithmic  
+% http://tex.stackexchange.com/questions/53357/switch-cases-in-algorithmic
 
 % New definitions
 \algnewcommand\algorithmicswitch{\textbf{switch}}
@@ -359,7 +361,7 @@
   \def\sjtu@value@titlemark{\MakeUppercase{#1}}}
 \newcommand\englishtitle[1]{%
 	\def\sjtu@value@englishtitle{#1}}
-  
+
 \renewcommand\author[1]{\def\sjtu@value@author{#1}}
 
 %\newcommand{\@multiauthor}{}
@@ -510,7 +512,7 @@
     {\kaishu\zihao{3}
     \def\arraystretch{1.1}
 \ifmultiauthorflag %多作者
-      \begin{tabular}{r@{}l}    
+      \begin{tabular}{r@{}l}
       \parse
       \end{tabular}
 \else %单作者
@@ -524,12 +526,12 @@
         \begin{CJKfilltwosides}{4em}\sjtu@label@advisor\end{CJKfilltwosides} 	 & \underline{\makebox[180pt]{\sjtu@value@advisor}} \\
 
       \begin{CJKfilltwosides}{4em}\sjtu@label@institute\end{CJKfilltwosides} 	 & \underline{\makebox[180pt]{\sjtu@value@institute}}
-       
+
   \end{tabular}
        \fi
        }
       % 单作者end
-      
+
   \end{center}
   \restoregeometry
   \cleardoublepage
@@ -571,12 +573,14 @@
 	}
 \fi
 
+\newfontfamily\timesfont{Times New Roman}
+\setmainfont{Times New Roman}
 % 中英文摘要
 \newenvironment{abstract}{\cleardoublepage \pdfbookmark[0]{\sjtu@label@abstract}{abstract}
 \chapter*{\textbf{\sjtu@value@title}\vskip 14pt\sjtu@label@abstract}\markboth{\sjtu@label@abstract}{}}{}
 \newcommand\keywords[1]{\vspace{2ex}\noindent{\sjtu@label@keywords} #1}
 \newenvironment{englishabstract}{\cleardoublepage\pdfbookmark[0]{\sjtu@label@englishabstract}{englishabstract}
-\chapter*{\sjtu@value@englishtitle\vskip 14pt\bfseries \sjtu@label@englishabstract}\markboth{\sjtu@label@englishabstract}{}}{}
+\chapter*{\vskip-2ex {\timesfont \bfseries \sjtu@value@englishtitle} \vskip 14pt\bfseries \sjtu@label@englishabstract}\markboth{\sjtu@label@englishabstract}{}}{}
 \newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\sjtu@label@englishkeywords} #1}
 
 \renewcommand\tableofcontents{%
@@ -594,11 +598,11 @@
 %\renewenvironment{thanks}
 %  {\chapter{\sjtu@label@thanks}}
 %  {}
-  
+
 \renewenvironment{thanks}
 {\chapter*{\sjtu@label@thanks\markboth{\sjtu@label@thanks}{}}\addcontentsline{toc}{chapter}{\sjtu@label@thanks}
 }{\label{last}}
-  
+
 \newenvironment{finish}{}{\label{last}}
 
 \newenvironment{summary}

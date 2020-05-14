@@ -4,41 +4,35 @@
 %%==================================================
 
 \begin{abstract}
-光学文本识别（OCR）在计算机视觉领域作为一个有着悠长历史的研究课题和方向，
-随着数字化的快速发展普及，在文档数字化，信息取证，电子商务等领域有着重要的应用价值。
-在深度学习流行的大背景下，该领域的学者提出了众多基于深度学习的神经网络并取得了显著的性能提升。
-由于文字的复杂性和图像中的存在的种种噪声（分辨率，图像质量，形变扭曲等），已有的研究成果依然存在的许多
-字符级别的识别错误。
-值得一提的是，许多日常应用场景都是大块文本（例如书籍，年报，发票等），并且有着显著的自然语言的语义特征。
-OCR 的研究大多集中注意力于图像的处理的识别上，然而鲜有探索如何结合自然语言处理对识别结果进行语义修正。
-将带有个别识别错误的结果修正为正确的文本可以被视作一种翻译的特例，
-同时在语法错误修正领域我们可以看到机器翻译有关技术已经在此得到推广和应用。
-OCR 识别结果中的错误虽然有别与语法错误，不过类似于语法错误，我们的研究表明该思路成功应用于 OCR 识别结果
-的修正中。
-另一方面，随着基于 Transformer 架构和大规模无监督文本的预训练词向量的爆发，我们发现使用预训练 BERT 语言模型对识别结果的修正亦有帮助。
-本文中首先我们将介绍当前有关技术的总体现状及其优劣之处，并且总结基于深度学习的文字识别系统的完整框架。
-在介绍并分析最近的学术界研究成果之后，我们提出将机器翻译有关技术作为语义分析修正模块应用推广到已有的 CRNN 文本识别网络中。
-并且在大规模数据集上进行的实验表明了我们的方法的有效性和优越性。
+光学文本识别（OCR）在计算机视觉领域作为一个有着悠长历史的研究课题，随着数字化的快速发展与普及，在文档数字化、信息取证、电子商务等领域有着重要的应用价值。
+在深度学习流行的大背景下，许多该领域的学者提出了基于深度学习的方法，并取得了进步。
+OCR 的许多日常应用场景都是大块文本（例如书籍、年报、发票等），这些大块文本有着明显的自然语言语义特征。
+已有的 OCR 研究大多集中于图像上，鲜有探索如何结合自然语言处理对识别结果进行语义修正。
+本文将带有个别识别错误的结果修正为正确的文本这一过程视作翻译的一种特例，为 OCR 识别结果的后处理修正提供了一种基于语义分析的新思路。
+另一方面，随着从大规模无监督文本预训练的 BERT 语言模型的涌现，我们发现带有个别错误的 OCR 识别结果类似于 BERT 中使用的带掩码的语言模型，并且可以为我们的后处理模块提供额外的语义特征。
+本文首先将介绍当前有关技术的总体现状及其优劣之处，并且总结基于深度学习的文字识别系统的整体框架。
+随后，我们提出两种最初用于机器翻译的网络模型：基于字卷积的方法，以及基于 BERT 语言模型和 Transformer 的方法，并将他们成功应用到 OCR 语义修正后处理模块中。
+其次，本文构建了一个基于新闻语料库的大规模合成数据集用于测试，该数据集含有 160 多万样本。
+本文提出的方法在该大规模数据集上进行的实验结果相比不采用后处理模块的 OCR 识别结果，在整句精确度上提升了至少 20\%，表明了我们提出的两种方法的有效性和优越性。
+并且，实验结果同时表明使用预训练 BERT 语言模型对识别结果的修正亦有帮助。
 
-\keywords{
-	文字识别，语义分析，深度学习， 自然语言处理																																																																																													}
+\keywords{文字识别，语义分析，深度学习， 自然语言处理}
+
 \end{abstract}
 
 \begin{englishabstract}
-	Optical text recognition (OCR) has a long history as a research topic and direction in the field of computer vision.
-	With the rapid development and popularity of digitalization, there are important applications in the field of document digitization, information forensics, e-commerce, etc.
-	Against the backdrop of the epidemic of deep learning, scholars in the field have proposed numerous neural networks based on deep learning and have achieved significant performance improvements.
-	Due to the complexity of the text and the noise present in the image (resolution, image quality, distortion, etc.), much of the research that has been done still exists many character level recognition errors.
-	It is worth noting that many everyday application scenarios are large chunks of text (e.g. books, annual reports, invoices, etc.) and have significant semantic features of natural language.
-	Much of the research in OCR has focused on the recognition of image processing, however, little has been explored in terms of semantic correction of recognition results in conjunction with natural language processing.
-	The correction of results with individual errors into correct text can be considered a special case of translation.
-	At the same time in the field of grammatical error correction we can see that machine translation technology has been promoted and applied here.
-	Errors in OCR results are different from, but similar to, grammatical errors, and our research shows that this idea is successfully applied to OCR results.
-	The amendment is in progress.
-	On the other hand, with the explosion of pre-trained language representations based on the Transformer architecture and large-scale unsupervised text, we find that the use of pre-trained BERT language models is also helpful for the correction of OCR results.
-	In this paper, we will first present the current state-of-the-art in general and its advantages and disadvantages, and summarize the complete framework of a deep learning-based text recognition system.
-	After presenting and analyzing recent academic findings, we propose to extend machine translation-related techniques as a semantic analysis modification module application to the existing CRNN text recognition network.
-	Experiments conducted on large data sets have shown the validity and superiority of our method.
-	
-	\englishkeywords{text recognition, semantic analysis, deep learning, NLP}
+Optical text recognition (OCR) has a long history in the field of computer vision as a research topic.
+With the rapid development and popularity of digitalization, it has important applications in document digitization, information forensics, e-commerce and other fields.
+In the context of the popularity of deep learning, many scholars in this field have proposed and made progress in deep learning-based approaches.
+Many of the everyday applications of OCR are chunks of text (e.g., books, annual reports, invoices, etc.), which have obvious semantic features of natural language.
+Most of the OCR research that has been done has focused on images, and little has been done to explore how semantic corrections to recognition results can be made in conjunction with natural language processing.
+This paper considers the process of correcting results with individual identification errors to correct text as a special case of translation, providing a new light of thinking based on semantic analysis for the post-processing correction of OCR identification results.
+On the other hand, with the emergence of BERT language models from large-scale unsupervised text pre-training, we find that OCR recognition with individual errors results similar to the masked language models used in BERT and can provide additional semantic features for our post-processing modules.
+This paper will first introduce the current state-of-the-art and its advantages and disadvantages, and summarize the overall framework of a deep learning-based word recognition system.
+Subsequently, we present two network models initially used for machine translation: the word convolution-based approach, and the BERT language model and Transformer-based approach, and successfully apply them to the OCR semantic modified post-processing module.
+Second, this paper constructs for testing a large-scale synthetic dataset based on a news corpus, which contains more than 1.6 million samples.
+The experimental results of the proposed methods on this large dataset have improved the whole-sentence accuracy by at least 20\% compared to the OCR identification results without the post-processing module, indicating the validity and superiority of our two methods.
+Moreover, the experimental results also show that the use of pre-trained BERT language models can help in the correction of recognition results.
+
+\englishkeywords{text recognition, semantic analysis, deep learning, NLP}
 \end{englishabstract}
