@@ -1,0 +1,10 @@
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.1}预处理}{\reset@font\mtcSfont 10}{section.2.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.2}语义结构分割}{\reset@font\mtcSfont 11}{section.2.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.1}YOLO}{\reset@font\mtcSSfont 12}{subsection.2.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.2}CTPN}{\reset@font\mtcSSfont 13}{subsection.2.2.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.3}文本识别模型}{\reset@font\mtcSfont 14}{section.2.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.1}CRNN}{\reset@font\mtcSSfont 14}{subsection.2.3.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.4}基于语义分析的后处理}{\reset@font\mtcSfont 17}{section.2.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.4.1}基于 SMT 的方法}{\reset@font\mtcSSfont 18}{subsection.2.4.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.4.2}基于 $n$-gram 统计特征和迷惑集的方法}{\reset@font\mtcSSfont 19}{subsection.2.4.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.5}本章小结}{\reset@font\mtcSfont 21}{section.2.5}}

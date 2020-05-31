@@ -22,7 +22,7 @@
 \DeclareOption{submit}{\sjtu@submittrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
-\LoadClass[a4paper,UTF8,zihao=-4,scheme=chinese,AutoFakeBold]{ctexbook}
+\LoadClass[a4paper,UTF8,zihao=-4,scheme=chinese]{ctexbook}
 \ifsjtu@bachelor\relax\else
   \ifsjtu@master\relax\else
     \ifsjtu@doctor\relax\else
@@ -68,6 +68,10 @@
 \RequirePackage{upgreek}
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
+\usepackage[titles,subfigure]{tocloft}%给目录sec部分加点,用subfigure取消和subfigure宏包的冲突
+\renewcommand{\cftdot}{-}
+\renewcommand{\cftdotsep}{1.0}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 \RequirePackage{caption}
 \RequirePackage[list=off]{bicaption}
 \RequirePackage[backend=biber,style=gb7714-2015,gbpunctin=false,gbpub=false,gbnamefmt=lowercase,gbtype=false,url=false,doi=false]{biblatex}
@@ -584,10 +588,10 @@
 \newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\sjtu@label@englishkeywords} #1}
 
 \renewcommand\tableofcontents{%
-  \cleardoublepage
+%  \cleardoublepage
   \pdfbookmark[0]{\contentsname}{toc}
   \chapter*{\contentsname}
-  \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
+%  \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
   \@starttoc{toc}%
 }
 
