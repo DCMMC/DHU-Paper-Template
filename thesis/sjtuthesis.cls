@@ -74,6 +74,8 @@
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 \RequirePackage{caption}
 \RequirePackage[list=off]{bicaption}
+% https://github.com/sjtug/SJTUThesis/issues/506
+\RequirePackage{xeCJKfntef}
 \RequirePackage[backend=biber,style=gb7714-2015,gbpunctin=false,gbpub=false,gbnamefmt=lowercase,gbtype=false,url=false,doi=false]{biblatex}
 % 一条文献中第一行相对后面各行的缩进
 \setlength{\bibitemindent}{4em}
