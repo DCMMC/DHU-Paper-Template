@@ -18,7 +18,7 @@
 
 
 
-\documentclass[12 pt]{beamer}
+\documentclass[12pt]{beamer}
 \usetheme[
 	bullet=circle,		% Other option: square
 	bigpagenumber,		% circled page number on lower right
@@ -26,7 +26,10 @@
 	shadow=false,			% Shading for beamer blocks
 	watermark=BG_lower,	% png file for the watermark
 	]{Flip}
-
+	
+% footnotesize 太大啦
+% https://tex.stackexchange.com/questions/21741/how-do-i-change-footnote-font-size-in-beamer-presentation/146021
+\setbeamerfont{footnote}{size=\scriptsize}
 
 \newcommand{\titleimage}{title}			% Custom title
 \newcommand{\tanedo}{tanedolight}		% Custom author name
@@ -40,6 +43,7 @@
 %% Default font: lmodern, doesn't require fontspec % solves some default warnings
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{xeCJK}
 %\usepackage{sfmath}		% Sans Serif Math, off by default
 
 %% Protects fonts from Beamer screwing with them
@@ -50,15 +54,18 @@
 %% XeLaTeX fonts: (comment out if you don't use XeLaTeX)
 
 %% For advanced fonts: access local OS X fonts
-\usepackage[no-math]{fontspec}
+%\usepackage[no-math]{fontspec}
 %% This template uses typical OS X and Adobe fonts
 \defaultfontfeatures{Mapping=tex-text}	% This seems to be important for mapping glyphs properly
 
 \setmainfont{PT Sans}			% Beamer ignores "main font" in favor of sans font
 \setsansfont{PT Sans}			% This is the font that beamer will use by default
 % \setmainfont{Gill Sans Light}		% Prettier, but harder to read
-
 \setbeamerfont{title}{family=\fontspec{PT Sans}}
+
+\setCJKmainfont{Noto Sans CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans Mono CJK SC}
 
 
 % \newcommand{\handwriting}{\fontspec{augie}} % From Emerald City, free font
@@ -76,6 +83,8 @@
 % Usual LaTeX Packages %
 %%%%%%%%%%%%%%%%%%%%%%%%
 
+\usepackage{setspace}
+\usepackage{wrapfig}
 \usepackage{xargs}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -118,6 +127,15 @@
 \usetikzlibrary{mindmap,trees}	% For mind map
 % http://www.texample.net/tikz/examples/computer-science-mindmap/
 
+% https://tex.stackexchange.com/questions/27626/beamer-footnote-not-showing
+\let\oldfootnote\footnote
+\renewcommand\footnote[1][]{\oldfootnote[frame,#1]}
+
+\setbeamertemplate{section in toc}[sections numbered]
+
+% https://tex.stackexchange.com/questions/82456/how-to-remove-figure-caption-prefix-figure-in-beamer
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+
 % DCMMC: for university logo
 \newif\ifplacelogo % create a new conditional
 \placelogotrue % set it to true
@@ -134,9 +152,9 @@
 
 
 % DCMMC: 显示在页脚的作者,标题, 单位
-\author[Wentao Xiao\quad {wentao.xiaoo@mail.dhu.edu.cn}]{Wentao Xiao}
-\title[A demo for Flip's Beamer Theme]{A demo for Flip's Beamer Theme}
-\institute{Donghua University}
+\author{答辩人：肖文韬\quad 指导老师：万燕}
+\title{面向语义分析的文本识别研究与实现}
+\institute{东华大学}
 % DCMMMC: 显示在首页的日期
 \date{\today}
 
@@ -150,14 +168,14 @@
 	% DCMMC: disable university logo for TOC
 	\placelogofalse
 	\begin{frame}
-		\frametitle{Contents}
+		\frametitle{目~~录}
 		\tableofcontents[currentsection]
 	\end{frame}
 	\placelogotrue
 }
 
-\begin{document}
 
+\begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Additional  settings %
