@@ -1,11 +1,13 @@
 %# -*- coding: utf-8-unix -*-
-\documentclass[12pt, project, fontset=windows, openany, oneside, submit]{sjtuthesis}
+\documentclass[12pt, project, fontset=adobe, openany, oneside, submit]{sjtuthesis}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{bbm}
 \usepackage{xpatch}
 \usepackage{caption}
+% https://github.com/sjtug/SJTUThesis/issues/506
+\RequirePackage{xeCJKfntef}
 % remove headers
 \renewcommand{\headrulewidth}{0pt}
 \makeatletter

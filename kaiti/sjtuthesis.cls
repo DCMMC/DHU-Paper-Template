@@ -216,21 +216,20 @@
 \graphicspath{{fig/}{figure/}{figures/}{logo/}{logos/}{graph/}{graphs}}
 \DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
 
+\DeclareCaptionOption{bi-first}[]{
+	\def\tablename{\sjtu@tablename}
+	\def\figurename{\sjtu@figurename}
+	
+}
+\DeclareCaptionOption{bi-second}[]{
+	\def\tablename{Table}
+	\def\figurename{Figure}
+}
+
 % Caption setting in caption and bicaption pacakge
 \captionsetup{format=plain,labelformat=simple,labelsep=space,justification=centering,font=small}
 \captionsetup[bi-first]{bi-first}
 \captionsetup[bi-second]{bi-second}
-
-\DeclareCaptionOption{bi-first}[]{
-    \def\tablename{\sjtu@tablename}
-    \def\figurename{\sjtu@figurename}
-
-}
-\DeclareCaptionOption{bi-second}[]{
-    \def\tablename{Table}
-    \def\figurename{Figure}
-
-}
 
 % Ref https://github.com/weijianwen/SJTUThesis/issues/186
 \@addtoreset{algorithm}{chapter}% algorithm counter resets every chapter
