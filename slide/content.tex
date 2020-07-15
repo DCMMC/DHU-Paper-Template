@@ -67,7 +67,7 @@
 		\only<3>{\ALERT{思考}：能否语义分析 OCR 识别结果并修正其识别错误？\\ \vspace{1.0em}}
 			常见的 OCR 识别错误：
 			\begin{enumerate}
-				\item 替换错误：{\small “通货膨\ALERT{服}” $\Rightarrow$ “通货膨\Alert{胀}”}
+				\item 替换错误：{\small “通货膨\ALERT{服}” $\Rightarrow$ “通过膨\Alert{胀}”}
 				\item 冗余错误：{\footnotesize “\ALERT{休}体育总局” $\Rightarrow$ “体育总局”}
 				\item 遗漏错误：{\small “根据国” $\Rightarrow$ “根据国\Alert{际}”}
 			\end{enumerate}
@@ -80,19 +80,10 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}[c]{}
-	\begin{center}
-		\begin{spacing}{2}
-			{\large 面向\ALERT{语义分析}的\ALERT{文本识别}研究与实现！}
-		\end{spacing}
-		\includegraphics[width=.4\textwidth]{work.png}
-	\end{center}
-\end{frame}
-
 \begin{frame}[c]{CRNN文本识别模型}{简要介绍}
 \begin{columns}[t]
 	\begin{column}[T]{5cm}
-		CRNN\footnote{Shi B, \textit{el al}. An End-­to-­End Trainable Neural Network for Image Based Sequence Recognition and Its Application to Scene Text Recognition, \textbf{TPAMI}.} 思路：
+		CRNN\footnote{Shi B, \textit{el al}. An End­to­End Trainable Neural Network for Image Based Sequence Recognition and Its Application to Scene Text Recognition, \textbf{TPAMI}.} 思路：
 		\begin{enumerate}
 			\item CNN\footnote{本文使用的CRNN实现与原文略有不同：瓶颈层}：提取图像特征序列
 			\item RNN：获取上下文信息
@@ -123,13 +114,14 @@
 		\item 使用动态规划找到 $n$-gram 分数最高的句子
 		\item 使用 Laplace 平滑解决 $n$-gram 稀疏问题
 	\end{enumerate}
+
 \end{frame}
 
 \begin{frame}[c]{本文贡献}
 	\begin{enumerate}
 		\item 构建了一个大规模合成数据集（160w）
 		\item 研究并实现了基于 ConvS2S 字卷积的 OCR 后处理模块
-		\item 研究并实现了基于 ALBERT 和 Transformer 的 OCR 后处理模块
+		\item 研究并实现了基于 BERT 和 Transformer 的 OCR 后处理模块
 		\item 与其他已有研究成果（$n$-­gram+迷惑集）进行对比实验
 	\end{enumerate}
 \end{frame}
@@ -165,8 +157,8 @@
 	对解码层第 $l$ 层，多步注意力结合卷积层输出 $\hat{H}_D^l$ 和编码层最终输出 $H^L_E$：
 	\begin{align}
 		Z_E^L &= \text{affine}_{h \rightarrow f}(H_E^L) \\
-		C^l &= \text{Attention}(\text{affine}_{h \rightarrow f}(\hat{H}_D^l) + G, Z_E^L, Z_E^L + E) \in \mathbb{R}^{n \times f}\\
-		H_D^l &= \hat{H}^l_D + C^l W_c
+		C^l &= \text{Attention}(\text{affine}_{h \rightarrow f}(\hat{H}_D^l), Z_E^L, Z_E^L + E) \in \mathbb{R}^{n \times f}\\
+		H_D^l &= \hat{H}^L_D + C^l W_c
 	\end{align}
 	
 	缩放点乘注意力：
@@ -221,9 +213,9 @@
 	\only<1>{
 		\begin{center}
 			\begin{spacing}{2}
-				{\large \ALERT{机器翻译模型 + 预训练语言模型？}}
+				{\large \ALERT{能否将预训练于海量数据的语言模型与机器翻译模型结合在一起？}}
 			\end{spacing}
-			\includegraphics[width=.5\textwidth]{MT_LM.png}
+			
 		\end{center}
 	}%
 
@@ -234,7 +226,7 @@
 					\includegraphics[width=1.1\textwidth]{ALBERT_NMT.png}
 				\end{column}
 				\begin{column}[T]{4cm}
-					BERT-NMT\footnote{Zhu J, \textit{et al}. Incorporating BERT into Neural Machine Transla­tion. \textbf{ICLR}.} 机器翻译：
+					BERT-NMT\footnotemark[1] 机器翻译：
 					\begin{enumerate}
 						\item 在编码器解码器中引入 BERT 语言模型
 						\item 使用 drop-net 正则化 BERT 带来的过拟合
@@ -250,10 +242,10 @@
 			\begin{column}[T]{5cm}
 				\ALERT{本文提出的改进：}
 				\begin{enumerate}
-					\item 将 BERT-NMT\footnote{Zhu J, \textit{et al}. Incorporating BERT into Neural Machine Transla­tion. \textbf{ICLR}.} 迁移为 OCR 语义修正后处理
+					\item 将 BERT-NMT\footnote{Zhu J, \textit{et al}. Incorporating BERT into Neural Machine Transla­tion. \textbf{ICLR}.} 迁移为 OCR 识别语义修正后处理
 					\item 将 BERT 替换为 ALBERT
 					\item 取消分词
-					\item 对输入和输出的嵌入层共享同一个词嵌入表
+					\item 对输入和输出的嵌入层共享同一个 Lookup table
 				\end{enumerate}
 			\end{column}
 			\begin{column}[T]{5cm}
@@ -263,26 +255,6 @@
 		\end{columns}
 		}%
 	}
-
-\only<4>{
-	{\footnotesize
-		\begin{columns}[t]
-			\begin{column}[T]{5cm}
-				\ALERT{本文提出的改进：}
-				\begin{enumerate}
-					\item 将 BERT-NMT\footnote{Zhu J, \textit{et al}. Incorporating BERT into Neural Machine Transla­tion. \textbf{ICLR}.} 迁移为 OCR 识别语义修正后处理
-					\item 将 BERT 替换为 ALBERT
-					\item 取消分词
-					\item 对输入和输出的嵌入层共享同一个 Lookup table
-				\end{enumerate}
-			\end{column}
-			\begin{column}[T]{5cm}
-				\hspace*{-2.5em}
-				\includegraphics[width=1.3\textwidth]{overall_highlighted.png}
-			\end{column}
-		\end{columns}
-	}%
-}
 \end{frame}
 
 \section{实验验证}
@@ -434,49 +406,6 @@
 \end{table}
 \end{frame}
 
-\begin{frame}[c]{实验结果分析}
-	\vspace{-2em}
-	\begin{table}
-		\scriptsize
-		\caption[]{{\scriptsize 基于语义分析的后处理修正模块成功案例}}
-		\centering
-		\begin{tabular}{c c}
-			\hline
-			OCR 识别结果 & 中国外\ALERT{论}交\ALERT{马}中\ALERT{.}心公布,人民币\ALERT{见}美元9日 \\
-			识别错误类型 & 删除+替换 \\
-			语义修正结果 & 中国外\ALERT{汇}交\ALERT{易}中心公布，人民币\ALERT{兑}美元9日中 \\
-			\hline
-			& \\
-			\hline
-			OCR 识别结果 &\ALERT{达}一点当\ALERT{燃丹}益于饰\ALERT{梅}者金范的端\ALERT{止}外形， \\
-			识别错误类型 & 替换 \\
-			语义修正结果 & \ALERT{这}一点当\ALERT{然得}益于饰\ALERT{掩}者金范的端\ALERT{正}外形，不 \\
-			\hline
-		\end{tabular}
-	\end{table}
-	
-	\begin{table}
-		\scriptsize
-		\caption[]{{\scriptsize 基于语义分析的后处理修正模块失败案例}}
-		\centering
-		\begin{tabular}{c c}
-			\hline
-			OCR 识别结果 & 更不知道到底欠了多少线，不\ALERT{遇退}他知道一\ALERT{黏}, \\
-			语义修正结果(ALBERT-Transformer) & 更不知道到底欠了多少钱，不过\ALERT{过}他知道一点 \\
-			语义修正结果(ConvS2S) & 更不知道到底欠了多少钱，不过他知道一点 \\
-			实际正确结果 & 更不知道到底欠了多少钱，不过他知道一点 \\
-			\hline
-			& \\
-			\hline
-			OCR 识别结果 & 王尽士念丽一闹门匿锯很风等 \\
-			语义修正结果(ALBERT-Transformer) & 王女士表示，一家人\ALERT{数据等风险。他认为只要} \\
-			语义修正结果(ConvS2S) & 王女士表示，\ALERT{在}一家人\ALERT{透露，据很风险，只要} \\
-			实际正确结果 & 王女士表示，这一家人的遭遇很让人感触， \\
-			\hline
-		\end{tabular}
-	\end{table}
-\end{frame}
-
 \section{总结与展望}
 
 \begin{frame}[c]{总结与展望}
@@ -484,7 +413,7 @@
 	\begin{enumerate}
 		\item OCR 语义修正可以视为一种特殊的机器翻译
 		\item 基于海量文本的预训练语言模型可以提供有效的语义信息
-		\item 近距离局部信息可能更加重要（ConvS2S）
+		\item 近距离局部信息可以更加重要（ConvS2S）
 	\end{enumerate}
 	展望：
 	\begin{enumerate}
